@@ -1,45 +1,36 @@
 ;(function() {
-    // CommonJS
+
 	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
     
     function Brush()	{
 
         var datatypes = 'char bool BOOL double float int long short id void';
         
-        var keywords = 'IBAction IBOutlet SEL YES NO readwrite readonly nonatomic nil NULL ';
-        keywords += 'super self copy ';
-        keywords += 'break case catch class const copy __finally __exception __try ';
-        keywords += 'const_cast continue private public protected __declspec ';
-        keywords += 'default delete deprecated dllexport dllimport do dynamic_cast ';
-        keywords += 'else enum explicit extern if for friend goto inline ';
-        keywords += 'mutable naked namespace new noinline noreturn nothrow ';
-        keywords += 'register reinterpret_cast return selectany ';
-        keywords += 'sizeof static static_cast struct switch template this ';
-        keywords += 'thread throw true false try typedef typeid typename union ';
-        keywords += 'using uuid virtual volatile whcar_t while ';
-        keywords += '@property @selector @interface @end @implementation @synthesize ';
-        
+        var keywords = 'IBAction IBOutlet SEL YES NO readwrite readonly nonatomic NULL'
+                     + ' super self copy if else for in enum while typedef switch case return'
+                     + ' const static retain TRUE FALSE ON OFF';
                 
         this.regexList = [
-                { regex: SyntaxHighlighter.regexLib.singleLineCComments,                css: 'comments' },              // one line comments
-                { regex: SyntaxHighlighter.regexLib.multiLineCComments,         css: 'comments' },              // multiline comments
-                { regex: SyntaxHighlighter.regexLib.doubleQuotedString,         css: 'string' },                        // double quoted strings
-                { regex: SyntaxHighlighter.regexLib.singleQuotedString,         css: 'string' },                        // single quoted strings
-                { regex: new RegExp('^ *#.*', 'gm'),                                            css: 'preprocessor' },          // preprocessor
-                { regex: new RegExp(this.getKeywords(datatypes), 'gm'),         css: 'datatypes' },             // datatypes
-                { regex: new RegExp(this.getKeywords(keywords), 'gm'),          css: 'keyword' },                       // keyword
-                { regex: /(?!\@interface\b)\@[\$\w]+\b/g,					css: 'color1' },		// annotation @anno
-                { regex: new RegExp('\\bNS\\w+\\b', 'g'),                                       css: 'keyword' },                       // keyword
-                { regex: new RegExp('@\\w+\\b', 'g'),                                           css: 'keyword' },                       // keyword
-                ];
-        
+                { regex: new RegExp(this.getKeywords(datatypes), 'gm'), css: 'color2' },        // primitive data types
+                { regex: new RegExp(this.getKeywords(keywords), 'gm'),  css: 'color2' },        // keywords
+                { regex: new RegExp('@\\w+\\b', 'g'),                   css: 'color2' },        // @-keywords
+                { regex: new RegExp('[: ]nil', 'g'),                    css: 'color2' },        // nil-workaround
+                { regex: new RegExp(' \\w+(?=[:\\]])', 'g'),            css: 'variable' },      // messages
+                { regex: SyntaxHighlighter.regexLib.singleLineCComments,css: 'comments' },      // comments
+                { regex: SyntaxHighlighter.regexLib.multiLineCComments, css: 'comments' },      // comments
+                { regex: new RegExp('@"[^"]*"', 'gm'),                  css: 'string' },        // strings
+                { regex: new RegExp('\\d', 'gm'),                       css: 'string' },        // numeric values
+                { regex: new RegExp('^ *#.*', 'gm'),                    css: 'preprocessor' },  // preprocessor
+                { regex: new RegExp('\\w+(?= \\*)', 'g'),               css: 'keyword' },       // object types - variable declaration
+                { regex: new RegExp('\\b[A-Z]\\w+\\b(?=[ ,;])', 'gm'),  css: 'keyword' },       // object types - protocol
+                { regex: new RegExp('\\.\\w+', 'g'),                    css: 'constants' }      // accessors
+        ];
     };
     Brush.prototype	= new SyntaxHighlighter.Highlighter();
-	Brush.aliases	= ['objc', 'obj-c'];
+	Brush.aliases	= ['oc'];
 
 	SyntaxHighlighter.brushes.ObjC = Brush;
 
-	// CommonJS
 	typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
 
-)();
+})();
