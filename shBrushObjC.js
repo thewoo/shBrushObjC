@@ -11,14 +11,15 @@
                      + ' const static retain TRUE FALSE ON OFF';
                 
         this.regexList = [
-                { regex: new RegExp(this.getKeywords(datatypes), 'gm'), css: 'color3' },        // primitive data types
-                { regex: new RegExp(this.getKeywords(keywords), 'gm'),  css: 'color3' },        // keywords
-                { regex: new RegExp('@\\w+\\b', 'g'),                   css: 'color3' },        // @-keywords
+                { regex: new RegExp(this.getKeywords(datatypes), 'gm'), css: 'color2' },        // primitive data types
+                { regex: new RegExp(this.getKeywords(keywords), 'gm'),  css: 'color2' },        // keywords
+                { regex: new RegExp('@\\w+\\b', 'g'),                   css: 'color2' },        // @-keywords
                 { regex: new RegExp('[: ]nil', 'g'),                    css: 'color3' },        // nil-workaround
                 { regex: new RegExp(' \\w+(?=[:\\]])', 'g'),            css: 'variable' },      // messages
                 { regex: SyntaxHighlighter.regexLib.singleLineCComments,css: 'comments' },      // comments
                 { regex: SyntaxHighlighter.regexLib.multiLineCComments, css: 'comments' },      // comments
                 { regex: new RegExp('@"[^"]*"', 'gm'),                  css: 'color3' },        // strings
+                { regex: new RegExp('"[^"]*"', 'gm'),                   css: 'color3' },
                 { regex: new RegExp('\\d', 'gm'),                       css: 'string' },        // numeric values
                 { regex: new RegExp('^ *#.* ', 'gm'),                   css: 'variable' },       // preprocessor
                 { regex: new RegExp('\\w+(?= \\*)', 'g'),               css: 'keyword' },       // object types - variable declaration
