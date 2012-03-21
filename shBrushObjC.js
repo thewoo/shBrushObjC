@@ -13,7 +13,7 @@
         this.regexList = [
                 { regex: new RegExp(this.getKeywords(datatypes), 'gm'), css: 'color2' },        // primitive data types
                 { regex: new RegExp(this.getKeywords(keywords), 'gm'),  css: 'color2' },        // keywords
-                { regex: new RegExp('@\\w+\\b', 'g'),                   css: 'color2' },        // @-keywords
+                { regex: new RegExp('@\\w+\\b', 'g'),                   css: 'comments' },        // @-keywords
                 { regex: new RegExp('[: ]nil', 'g'),                    css: 'color2' },        // nil-workaround
                 { regex: new RegExp(' \\w+(?=[:\\]])', 'g'),            css: 'variable' },      // messages
                 { regex: SyntaxHighlighter.regexLib.singleLineCComments,css: 'comments' },      // comments
