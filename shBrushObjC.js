@@ -16,7 +16,7 @@
                 { regex: new RegExp('@\\w+\\b', 'g'),                   css: 'color2' },        // @-keywords
                 { regex: new RegExp('[: ]nil', 'g'),                    css: 'color3' },        // nil-workaround
                 { regex: new RegExp(' \\w+(?=[:\\]])', 'g'),            css: 'variable' },      // messages
-                { regex: SyntaxHighlighter.regexLib.singleLineCComments,color: #8A0808 },      // comments
+                { regex: SyntaxHighlighter.regexLib.singleLineCComments,css: 'comments' },      // comments
                 { regex: SyntaxHighlighter.regexLib.multiLineCComments, css: 'comments' },      // comments
                 { regex: new RegExp('@"[^"]*"', 'gm'),                  css: 'color3' },        // strings
                 { regex: new RegExp('"[^"]*"', 'gm'),                   css: 'color3' },
